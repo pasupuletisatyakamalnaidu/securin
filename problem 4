@@ -1,0 +1,32 @@
+class SimpleRandom:
+    def __init__(self, seed=None):
+        self.seed = seed if seed is not None else 1  # Default seed is 1
+        self.state = self.seed
+    def randbelow(self, limit):
+        self.state = (self.state * 1103515245 + 12345) & ((1 << 31) - 1)
+        return self.state % limit
+def undoom_dice(Die_A):
+    New_Die_A = []
+    New_Die_B = []
+    simple_random = SimpleRandom()
+    for i in range(6):
+        spots_A = simple_random.randbelow(4) + 1
+        New_Die_A.append(spots_A)
+    target_probabilities = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+    current_probabilities = [0] * 11
+    for i in range(6):
+        for j in range(6):
+            current_probabilities[New_Die_A[i] + j] += 1
+    for i in range(6):
+        while current_probabilities[i] < target_probabilities[i]:
+            sides_B = simple_random.randbelow(8) + 1  # Adjusted range to 1-8
+            New_Die_B.append(sides_B)
+            current_probabilities[i] += 1
+    while len(New_Die_B) < 6:
+        sides_B = simple_random.randbelow(8) + 1  # Adjusted range to 1-8
+        New_Die_B.append(sides_B)
+    return New_Die_A, New_Die_B
+Die_A = [1, 2, 3, 4, 5, 6]
+New_Die_A, New_Die_B = undoom_dice(Die_A)
+print("New_Die_A =", New_Die_A)
+print("New_Die_B =", New_Die_B)
