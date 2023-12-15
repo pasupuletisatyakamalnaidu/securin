@@ -1,0 +1,10 @@
+combinations_distribution = {}
+for die_a in range(1, 7):
+    for die_b in range(1, 7):
+        total = die_a + die_b
+        combinations_distribution.setdefault(total, []).append((die_a, die_b))
+total_possible_sums = sum(len(value) for value in combinations_distribution.values())
+probabilities = {key: (len(value), total_possible_sums) for key, value in combinations_distribution.items()}
+print("\nProbabilities:")
+for key, value in probabilities.items():
+    print("P(Sum = {}) = {}/{}".format(key, value[0], value[1]))
