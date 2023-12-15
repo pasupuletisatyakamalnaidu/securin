@@ -1,0 +1,9 @@
+combinations_distribution = {}
+for die_a in range(1, 7):
+    for die_b in range(1, 7):
+        total = die_a + die_b
+        combinations_distribution.setdefault(total, []).append((die_a, die_b))
+
+print("Combinations Distribution:")
+for key, value in combinations_distribution.items():
+    print("Sum = {}: {} combinations - {}".format(key, len(value), value))
