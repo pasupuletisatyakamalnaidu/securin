@@ -1,0 +1,6 @@
+total_combinations = 0
+for die_a in range(1, 7):
+    for die_b in range(1, 7):
+        total_combinations += 1
+
+print("Total Combinations:", total_combinations)
