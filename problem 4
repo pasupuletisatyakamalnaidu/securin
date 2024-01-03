@@ -4,15 +4,15 @@ def cursed():
         for s3 in range(s2, 9):
             for s4 in range(s3, 9):
                 for s5 in range(s4, 9):
-                    for s6 in range(s5 + 1, 10):
+                    for s6 in range(s5, 9):
                         die1 = (1, s2, s3, s4, s5, s6)
                         for s2_prime in range(2, 9):
                             for s3_prime in range(s2_prime, 9):
                                 for s4_prime in range(s3_prime, 9):
                                     for s5_prime in range(s4_prime, 9):
-                                        for s6_prime in range(s5_prime + 1, 10):
+                                        for s6_prime in range(s5_prime, 9):
                                             die2 = (1, s2_prime, s3_prime, s4_prime, s5_prime, s6_prime)
-                                            if die1 != regular_pair and sums(die1, die2) == regular_sums:
+                                            if die1 != regular_die and sums(die1, die2) == regular_sums and max(die1)<5:
                                                 result.add((die1, die2))
     return result
 def sums(die1, die2):
